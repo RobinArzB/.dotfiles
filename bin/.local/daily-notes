@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+NOTES_DIR="$HOME/daily/notes"
+TEMPLATE_DIR="$HOME/daily"
+TODAY=`date +%Y-%m-%d`
+FILE="$NOTES_DIR/$TODAY.md"
+
+if ! [[ -f "$FILE" ]]; then
+    sed  -e "s/TODAY/$TODAY/g" "$TEMPLATE_DIR/template.md" > "$FILE"
+fi
+
+# Function to send nvim command and close window after nvim exits
+open_and_close_nvim() {
+    tmux send-keys "nvim '$FILE' && tmux kill-pane" C-m
+}
+
+# Check if we're in a tmux session
+if [ -z "$TMUX" ]; then
+    # If not in a session, check if a session named "notes" exists
+    if ! tmux has-session -t notes 2>/dev/null; then
+        # Create a detached session named "notes" if it doesn't exist
+        tmux new-session -d -s notes -c "$NOTES_DIR"
+    fi
+    # Attach to session "notes"
+    tmux attach-session -t notes
+    # Open nvim and set hook to close window after exit
+    open_and_close_nvim notes
+else
+    # If we are inside a tmux session already, open nvim in a new window
+    WINDOW_NAME="Editing_Notes_$TODAY"
+    tmux new-window -c "$NOTES_DIR" -n "$WINDOW_NAME"
+    open_and_close_nvim "$WINDOW_NAME"
+fi

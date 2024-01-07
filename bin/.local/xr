@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+feh_work="feh --bg-fill ~/wallpapers/berserk-3440x1440.jpg"
+feh_tv="feh --recursive --bg-fill --randomize ~/wallpapers/single/"
+feh_mono="feh --recursive --bg-fill --randomize ~/wallpapers/single/"
+
+function xr_entreprise() {
+    xrandr --output HDMI-1 --mode 3440x1440
+    eval $feh_work
+    exit 0
+}
+
+function xr_tv() {
+    xrandr --output HDMI-1 --mode 2560x1440 --output eDP-1 --primary --mode 1920x1080 --left-of HDMI-1
+    eval $feh_tv
+    exit 0
+}
+
+function xr_mono() {
+    xrandr --output eDP-1 --primary --mode 1920x1080  
+    eval $feh_mono
+    exit 0
+}
+
+# Menu interactif
+PS3="Sélectionnez un preset : "
+options=("Entreprise" "Télétravail" "Simple écran" "Quitter")
+
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Entreprise")
+           xr_entreprise 
+            ;;
+        "Télétravail")
+           xr_tv
+            ;;
+        "Simple écran")
+           xr_mono
+            ;;
+        "Quitter")
+            break
+            ;;
+        *) echo "Option invalide";;
+    esac
+done

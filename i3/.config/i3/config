@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 12px
+font pango:monospace 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -53,7 +53,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+A kill
@@ -67,7 +67,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # set wallpaper
-exec_always --no-startup-id feh --bg-fill ~/wallpapers/dbz1.jpg
+exec --no-startup-id feh --bg-fill --auto ~/wallpapers/single/*
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -187,6 +187,10 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -195,3 +199,19 @@ bar {
         status_command i3status
         tray_output primary
 }
+
+# Custom mode in order to handle session management
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $HOME/.local/scripts/i3escape lock, mode "default"
+    bindsym e exec --no-startup-id $HOME/.local/scripts/i3escape logout, mode "default"
+    bindsym s exec --no-startup-id $HOME/.local/scripts/i3escape suspend, mode "default"
+    bindsym h exec --no-startup-id $HOME/.local/scripts/i3escape hibernate, mode "default"
+    bindsym r exec --no-startup-id $HOME/.local/scripts/i3escape reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id $HOME/.local/scripts/i3escape shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Escape mode "$mode_system"
