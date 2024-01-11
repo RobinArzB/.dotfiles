@@ -1,0 +1,65 @@
+live_config_reload = true
+working_directory = "None"
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
+[debug]
+log_level = "Warn"
+persistent_logging = false
+print_events = false
+render_timer = false
+
+[window]
+decorations = "none"
+opacity = 0.9
+startup_mode = "Fullscreen"
+
+[scrolling]
+history = 100000
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[mouse]
+hide_when_typing = true
+
+[font]
+size = 12
+
+[font.bold]
+family = "Fira Mono"
+style = "Bold"
+
+[font.normal]
+family = "Fira Mono"
+style = "Regular"
+
+[colors.primary]
+background = '#0a0a05'
+foreground = '#f2f2f2'
+
+[colors.normal]
+black   = '#2e3436'
+red     = '#cc0000'
+green   = '#4e9a06'
+yellow  = '#c4a000'
+blue    = '#3465a4'
+magenta = '#75507b'
+cyan    = '#06989a'
+white   = '#d3d7cf'
+
+[colors.bright]
+black   = '#555753'
+red     = '#ef2929'
+green   = '#8ae234'
+yellow  = '#fce94f'
+blue    = '#729fcf'
+magenta = '#ad7fa8'
+cyan    = '#34e2e2'
+white   = '#eeeeec'
