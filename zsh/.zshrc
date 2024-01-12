@@ -11,8 +11,4 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_profile
 
-# ssh-agent
-if ! pgrep ssh-agent > /dev/null 2>&1; then
-    eval $(ssh-agent -s)
-fi
-
+eval $(ssh-agent -s)
