@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define your wallpaper directory
+wallpaper_dir="$HOME/personal/wallpapers"
+
+# Use 'find' to search for image files in the wallpaper directory and its subdirectories
+selected_wallpaper=$(find "$wallpaper_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | fzf)
+
+# Check if a wallpaper was selected
+if [ -n "$selected_wallpaper" ]; then
+    # Set the selected wallpaper using feh
+    feh --bg-fill "$selected_wallpaper"
+else
+    echo "No wallpaper selected."
+fi
+
