@@ -3,7 +3,6 @@ working_directory = "None"
 
 [env]
 TERM = "xterm-256color"
-WINIT_X11_SCALE_FACTOR = "1"
 
 [debug]
 log_level = "Warn"
@@ -13,7 +12,6 @@ render_timer = false
 
 [window]
 decorations = "none"
-opacity = 0.9
 startup_mode = "Fullscreen"
 
 [scrolling]
@@ -44,10 +42,13 @@ style = "Bold"
 
 [font.normal]
 family = "Fira Mono"
-style = "Regular"
 
 [colors.primary]
-background = '#0a0a05'
+# background = '#0a0a05'
+# background = '#0c0c05'
+# background = '#4b3a10'
+# background = '#6b4a25'
+background = '#331a00'
 foreground = '#f2f2f2'
 
 [colors.normal]
