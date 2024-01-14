@@ -12,6 +12,7 @@ render_timer = false
 
 [window]
 decorations = "none"
+opacity = 0.95
 startup_mode = "Fullscreen"
 
 [scrolling]
@@ -19,12 +20,6 @@ history = 100000
 
 [selection]
 save_to_clipboard = true
-
-[keyboard]
-bindings = [
-- { key = "Right", mods = ["Alt"], chars = "\x1BF" },
-- { key = "Left", mods = ["Alt"], chars = "\x1BB" },
-]
 
 [cursor]
 style = "Block"
@@ -45,12 +40,9 @@ family = "Fira Mono"
 style = "Medium"
 
 [colors.primary]
-# background = '#0a0a05'
-# background = '#0c0c05'
-# background = '#4b3a10'
-# background = '#6b4a25'
-background = '#331a00'
+background = '#0c0c05'
 foreground = '#f2f2f2'
+# background = '#0a0a05'
 
 [colors.normal]
 black   = '#2e3436'
