@@ -1,0 +1,18 @@
+XTerm*pointerMode: 2
+XTerm*saveLines: 1000000
+XTerm*scrollBar: false
+XTerm*borderless: true
+XTerm*VT100.Translations: #override \
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  Ctrl <KeyPress> plus: larger-vt-font() \n\
+  Ctrl <KeyPress> minus: smaller-vt-font() \n\
+  Ctrl Shift <Key> V: insert-selection(CLIPBOARD) \n\
+  Ctrl <KeyPress> equal: set-vt-font(default)
+XTerm*faceName: Fira Mono:size=12
+XTerm*faceSize: 12
+XTerm*renderfont: true
+XTerm*selectToClipboard: true
+XTerm*transparent: true
+XTerm*fadeColor: black
+XTerm*foreground: gray
+XTerm*background: black
